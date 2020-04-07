@@ -14,42 +14,47 @@ public class UsuarioDao {
     public boolean adicionar(Usuario usuario) {
         try {
             entityManager.getTransaction().begin();
+
             entityManager.persist(usuario);
             entityManager.persist(usuario.getEndereco());
+
             entityManager.getTransaction().commit();
             entityManager.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
     public boolean deletar(Long id) {
         try {
-            //chamar o metodo deletar
-            Usuario usuario = entityManager.find(Usuario.class, id);
             entityManager.getTransaction().begin();
+
+            Usuario usuario = entityManager.find(Usuario.class, id);
             entityManager.remove(usuario);
+
             entityManager.getTransaction().commit();
             entityManager.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
 
-    public boolean atualizar(Long id, Usuario usuario) {
-        usuario.setId(id);
+    public boolean atualizar(Usuario usuario) {
         try {
             entityManager.getTransaction().begin();
+
             entityManager.merge(usuario);
+            entityManager.merge(usuario.getEndereco());
+
             entityManager.getTransaction().commit();
             entityManager.close();
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -57,12 +62,14 @@ public class UsuarioDao {
     public Usuario buscar(Long id) {
         try {
             entityManager.getTransaction().begin();
+
             Usuario usuario = entityManager.find(Usuario.class, id);
+
             entityManager.getTransaction().commit();
             entityManager.close();
             return usuario;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -70,12 +77,14 @@ public class UsuarioDao {
     public List<Usuario> listar() {
         try {
             entityManager.getTransaction().begin();
+
             List usuarios = entityManager.createQuery("Select u from Usuario u").getResultList();
+
             entityManager.getTransaction().commit();
             entityManager.close();
             return usuarios;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }

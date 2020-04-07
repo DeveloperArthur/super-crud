@@ -19,8 +19,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public boolean atualizar(Long id, Usuario usuario) {
-        return dao.atualizar(id, usuario);
+    public boolean atualizar(Usuario usuario) {
+        return dao.atualizar(usuario);
     }
 
     @Override

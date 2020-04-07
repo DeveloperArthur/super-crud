@@ -25,8 +25,8 @@ public class UsuarioController {
             System.err.println("Erro ao deletar usuario");
     }
 
-    public void atualizar(Long id, Usuario usuario) {
-        boolean sucesso = service.atualizar(id, usuario);
+    public void atualizar(Usuario usuario) {
+        boolean sucesso = service.atualizar(usuario);
         if (sucesso)
             System.out.println("Usuario atualizado com sucesso");
         else

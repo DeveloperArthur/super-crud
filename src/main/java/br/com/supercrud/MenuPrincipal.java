@@ -20,7 +20,7 @@ public class MenuPrincipal {
 
         UsuarioController controller = new UsuarioController();
         Scanner sc = new Scanner(System.in);
-        System.out.println("INFORME UMA OPCAO DO MENU: ");
+        System.out.println("INFORME UMA OPCAO DO MENU:");
         int opcao = sc.nextInt();
 
         switch (opcao) {
@@ -48,8 +48,8 @@ public class MenuPrincipal {
                 controller.adicionar(usuario);
                 break;
             case 2:
-                System.out.println("Informe o id que deseja do usuario que deseja alterar");
-                Long idParaAlterar = sc.nextLong();
+                System.out.println("Informe o id do usuario que deseja alterar");
+                Long idUsuarioParaAlterar = sc.nextLong();
 
                 System.out.println("Digite o novo nome");
                 String novoNome = sc.next();
@@ -57,6 +57,9 @@ public class MenuPrincipal {
                 int novaIdade = sc.nextInt();
                 System.out.println("Digite o novo CPF");
                 String novoCpf = sc.next();
+
+                System.out.println("Informe o id do endereco que deseja alterar");
+                Long idEnderecoParaAlterar = sc.nextLong();
 
                 System.out.println("Digite o novo logradouro");
                 String novoLogradouro = sc.next();
@@ -69,7 +72,11 @@ public class MenuPrincipal {
 
                 Endereco novoEndereco = new Endereco(novoLogradouro, novoNumero, novoEstado, novoBairro);
                 Usuario novoUsuario = new Usuario(novoNome, novaIdade, novoCpf, novoEndereco);
-                controller.atualizar(idParaAlterar, novoUsuario);
+
+                novoUsuario.setId(idUsuarioParaAlterar);
+                novoEndereco.setId(idEnderecoParaAlterar);
+
+                controller.atualizar(novoUsuario);
                 break;
             case 3:
                 System.out.println("Digite o id que deseja deletar");

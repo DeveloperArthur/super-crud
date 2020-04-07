@@ -9,7 +9,7 @@ public interface UsuarioService {
 
     public boolean deletar(Long id);
 
-    public boolean atualizar(Long id, Usuario usuario);
+    public boolean atualizar(Usuario usuario);
 
     public Usuario buscar(Long id);
 
